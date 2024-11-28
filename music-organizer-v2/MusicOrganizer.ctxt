@@ -24,4 +24,6 @@ comment7.target=void\ stopPlaying()
 comment7.text=\r\n\ Stop\ the\ player.\r\n
 comment8.params=
 comment8.target=void\ listAllFiles()
-numComments=9
+comment9.params=search
+comment9.target=void\ listMatching(java.lang.String)
+numComments=10

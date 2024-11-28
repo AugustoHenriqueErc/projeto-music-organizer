@@ -92,7 +92,16 @@ public class MusicOrganizer
         }
     }
     
-    public void listMatching (String search) {
-        for (String)
+    public void listMatching (String search) 
+    {
+        boolean searching = true;
+        for (String filename : files) 
+        {
+            if (filename.contains(search) && searching) {
+                System.out.println(filename);
+                searching = true;
+            }
+            
+        }
     }
 }
