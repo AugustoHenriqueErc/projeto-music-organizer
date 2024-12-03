@@ -15,7 +15,9 @@ public class MusicOrganizer
     private MusicPlayer player;
     // A reader that can read music files and load them as tracks.
     private TrackReader reader;
-
+    //status track playing
+    private boolean playing = false;
+    
     /**
      * Create a MusicOrganizer
      */
@@ -53,12 +55,23 @@ public class MusicOrganizer
      */
     public void playTrack(int index)
     {
-        if(indexValid(index)) {
+        if(indexValid(index)) 
+        {
             Track track = tracks.get(index);
-            track.addTimesPlayed();
-            player.startPlaying(track.getFilename());
-            System.out.println("Now playing: " + track.getArtist() + " - " + track.getTitle());
-            System.out.println(track.getTimesPlayed());
+            if(!playing) 
+            {
+                track.addTimesPlayed();
+                player.startPlaying(track.getFilename());
+                System.out.println("Now playing: " + track.getArtist() + " - " + track.getTitle());
+                System.out.println(track.getTimesPlayed());   
+                playing = true;
+            }
+            else 
+            {
+                stopPlaying();
+                playing = false;
+                playTrack(index);
+            }
         }
     }
     
@@ -166,7 +179,6 @@ public class MusicOrganizer
     private void readLibrary(String folderName)
     {
         ArrayList<Track> tempTracks = reader.readTracks(folderName, ".mp3");
-
         // Put all thetracks into the organizer.
         for(Track track : tempTracks) {
             addTrack(track);
@@ -182,5 +194,11 @@ public class MusicOrganizer
                 System.out.println(track.getDetails());   
             }
         }
+    }
+    
+    public void setTrackGenre(int trackIndex, String genre)
+    {
+        Track track = tracks.get(trackIndex);
+        track.setGenre(genre);
     }
 }

@@ -15,6 +15,8 @@ public class Track
     private String filename;
     //How many times the track has been played
     private int timesPlayed = 0;
+    private String genre;
+    private boolean playing = false;
     
     /**
      * Constructor for objects of class Track.
@@ -24,7 +26,7 @@ public class Track
      */
     public Track(String artist, String title, String filename)
     {
-        setDetails(artist, title, filename);
+        setDetails(artist, title, filename, "unknown");
     }
     
     /**
@@ -35,7 +37,7 @@ public class Track
      */
     public Track(String filename)
     {
-        setDetails("unknown", "unknown", filename);
+        setDetails("unknown", "unknown", filename, "unknown");
     }
     
     /**
@@ -71,7 +73,7 @@ public class Track
      */
     public String getDetails()
     {
-        return artist + ": " + title + "  (file: " + filename + ")";
+        return artist + ": " + title + "(genre:" + genre +")" +"  (file: " + filename + ")";
     }
     
     /**
@@ -80,11 +82,12 @@ public class Track
      * @param title The track's title.
      * @param filename The track file. 
      */
-    private void setDetails(String artist, String title, String filename)
+    private void setDetails(String artist, String title, String filename, String genre)
     {
         this.artist = artist;
         this.title = title;
         this.filename = filename;
+        this.genre = genre;
     }
     
     public void addTimesPlayed()
@@ -95,5 +98,20 @@ public class Track
     public int getTimesPlayed() 
     {
         return timesPlayed;
+    }
+    
+    public void resetTimesPlayed()
+    {
+        timesPlayed = 0;
+    }
+    //método de acesso ao genero
+    public String getGenre()
+    {
+        return genre;
+    }
+    //método modificador do genero
+    public void setGenre(String genre)
+    {
+        this.genre = genre;
     }
 }
