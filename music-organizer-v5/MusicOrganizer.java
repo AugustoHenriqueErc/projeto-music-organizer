@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * A class to hold details of audio tracks.
@@ -200,5 +201,35 @@ public class MusicOrganizer
     {
         Track track = tracks.get(trackIndex);
         track.setGenre(genre);
+    }
+    
+    public void removeTrackByArtist(String artistSearch)
+    {
+        Iterator<Track> it = tracks.iterator();
+        while(it.hasNext()) 
+        {
+            Track t = it.next();
+            String artist = t.getArtist();
+            if(artist.equals(artistSearch))
+            {
+                it.remove();     
+            }
+            
+        }
+    }
+    
+    public void removeTrackByTitle(String titleSearch)
+    {
+        Iterator<Track> it = tracks.iterator();
+        while(it.hasNext()) 
+        {
+            Track t = it.next();
+            String title = t.getTitle();
+            if(title.equals(titleSearch))
+            {
+                it.remove();     
+            }
+            
+        }
     }
 }
